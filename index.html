@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <!-- favicon del sitio -->
+  <link rel="shortcut icon" href="./src/JavaScript-logo.png" type="image/x-icon">
+  <link rel="stylesheet" href="./Estilos/mis-estilos.css">
+  <!-- la meta descripción se usa para ayudar a la indexación de google y que se identifique de que trata el contenido de la página -->
+  <meta name="description" content="página de explicación del uso del Document object model">
+  <!-- la meta keywords se usa para ayudar a la indexación de google a partir de palabras clave relacionadas con el contenido de tu página -->
+  <meta name="keywords" content="DOM, javascript, Ejemplos">
+  <!-- framework de animate.css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <!-- Titulo del sitio  -->
+  <title>DOM — Document Object Model</title>
+</head>
+<body class="wrap">
+    <header>
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="6" fill="#0b2540"/><path d="M7 8h10M7 12h10M7 16h6" stroke="#60a5fa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div>
+        <h1>¿Qué es el DOM? — Explicación y ejemplos</h1>
+        <p class="lead">Breve guía para entender el Document Object Model y su uso con JavaScript.</p>
+      </div>
+    </header>
+
+    <div class="grid">
+      <main>
+        <section class="card">
+          <h2>Definición</h2>
+          <p>El <strong>DOM</strong> (Document Object Model) es una representación en memoria del documento HTML o XML. Es una estructura en forma de árbol donde cada nodo es un objeto que representa una parte del documento: etiquetas (&lt;div&gt;, &lt;p&gt;), atributos, texto, etc. JavaScript puede acceder y modificar este árbol para cambiar la página dinámicamente.</p>
+          <img class="img-responsive" src="./src/Dom-tree.png" alt="visualización del arbol de nodos de el document object model">
+          <p class="muted">En términos simples: el DOM es la "interfaz" que permite a JavaScript ver y manipular la página web.</p>
+        </section>
+
+        <section class="card" style="margin-top:14px">
+          <h2>¿Para qué sirve?</h2>
+          <ul id="padre" class="examples">
+            <li id="primero">Leer y actualizar contenido (texto, atributos, estilos).</li>
+            <li id="eldelmedio">Crear o eliminar elementos de la página.</li>
+            <li>Responder a acciones del usuario con <em>event listeners</em>.</li>
+            <li>Navegar y consultar la estructura del documento (padres, hijos, hermanos).</li>
+            <li id="ultimo">Manipular formularios y validar datos en el cliente.</li>
+          </ul>
+          <p class="info">Prácticamente cualquier interacción dinámica en una web usa el DOM en algún nivel.</p>
+        </section>
+
+        <section class="card" style="margin-top:14px">
+          <h2>Ejemplos prácticos (interactivos)</h2>
+
+          <div class="demo">
+            <strong>1) Ingresar dato y cambiar texto:</strong>
+            <br>
+            <br>
+            <div>
+                <label for="nombre">Ingresa tu nombre:</label><br>
+                <input type="text" id="nombre" placeholder="Escribe tu nombre aquí">
+                <!-- el boton nos servirá para activar la función -->
+                <button id="btnEnviar">Enviar</button>
+            </div>
+            
+            <!-- el texto de bienvenida cambiará al ingresar el nombre -->
+            <h1 id="titulo">Hola</h1>
+            <hr>
+
+            <strong>2) Desaparecer y aparecer elementos:</strong>
+            <br>
+            <img class="animate__animated animate__pulse animate__infinite" id="ghost" src="./src/fantasma-azul.png" alt="ilustracion de un fantasma estilo retro game">
+            <br>            
+            <button id="bye-ghost">Ocultar</button>
+            <button id="hello-ghost">Mostrar</button>
+            <button id="here-ghost">Ambas</button>
+
+            <hr>
+
+            <strong>3) Crear elementos y añadir a la lista:</strong>
+                <ul id="lista"></ul>
+                <input id="input-item" placeholder="ingresar dato" />
+                <button id="btn-agregar">Agregar ítem</button>
+                <button id="btn-quitar">Quitar ítem</button>
+            <hr>
+
+            <strong>4) Remplazar elementos:</strong>
+            <br>
+            <section id="content-ghost">
+                <img class="animate__animated animate__pulse animate__infinite" id="ghost02" src="./src/fantasma-rojo.png" alt="ilustracion de un fantasma estilo retro game">
+                <br>
+                <button id="clone-ghost">clonar</button>         
+                <button id="change-ghost">cambiar</button>
+            </section>
+            
+            
+            <hr>
+
+            <strong>5) DOM eventos:</strong>
+            <div id="caja" class="output">Caja de ejemplo</div>
+            <button id="btn-clicked">Clic</button>
+
+            <hr>
+
+          </div>
+        </section>
+
+        <section class="card" style="margin-top:14px">
+          <h2>Ejemplos de código</h2>
+          <p class="muted">Estos fragmentos muestran patrones comunes de uso del DOM.</p>
+
+          <pre><code>// Seleccionar un elemento por id
+document.getElementById('miElemento')
+
+// Seleccionar por selector CSS
+const btn = document.querySelector('.mi-clase')
+
+// Cambiar contenido
+titulo.textContent = 'Nuevo texto'
+
+// Añadir evento
+btn.addEventListener('click', () =&gt; { /* ... */ })
+
+// Crear y añadir elemento
+const li = document.createElement('li')
+li.textContent = 'Elemento nuevo'
+lista.appendChild(li)
+
+// Cambiar clases
+element.classList.add('activo')
+element.classList.toggle('oculto')
+
+// Leer atributos
+const src = img.getAttribute('src')
+
+// Recorrer hijos
+for(const child of lista.children){ console.log(child) }
+</code></pre>
+        </section>
+
+      </main>
+
+      <aside>
+        <div class="card">
+          <h3>Resumen rápido</h3>
+          <p class="muted">DOM = árbol de objetos del documento. JavaScript puede leer y modificar este árbol para que la página cambie en respuesta a acciones o datos.</p>
+          <hr />
+          <h4>API útil</h4>
+          <ul>
+            <li><code>querySelector / querySelectorAll</code></li>
+            <li><code>getElementById</code></li>
+            <li><code>createElement</code></li>
+            <li><code>addEventListener</code></li>
+            <li><code>classList</code></li>
+          </ul>
+        </div>
+
+        <div class="card" style="margin-top:14px">
+          <h3>Codigo de ejemplo</h3>
+          <pre><code>document.querySelector('#btn-cambiar').addEventListener('click', () =&gt; {
+  document.getElementById('titulo-demo').textContent = 'Título actualizado desde el DOM'
+})
+</code></pre>
+        </div>
+
+      </aside>
+    </div>
+
+    <footer>
+      <p class="muted">Imagen Digital V - FUBA</p>
+    </footer>
+
+    <!--  mi script -->
+  <script src="./Scripts/dom.js"></script>
+</body>
+</html>
