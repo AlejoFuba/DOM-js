@@ -4,6 +4,7 @@ document  --> el arbol de nodos de html
 document.dir --> los objetos que puedo manupular
 window --> me trae los meotod que puedo manipular de la ventana
 */
+console.dir(document)
 
 // SELECCIONAR ELEMENTOS EN EL DOM
 /*
@@ -22,6 +23,10 @@ const hijo = padre.children[1]
 console.log(hijo)
 */
 
+const tagPadre = document.getElementById('padre')
+console.log(tagPadre)
+const losHijos = tagPadre.children[1]
+console.log(losHijos)
 
 // DEMOS
 
@@ -54,6 +59,26 @@ ejemplo:
 el evento .addEventListener se acciona al presionar el boton y cambia los datos
 */
 
+const tuNombre = document.getElementById('nombre')
+console.log(tuNombre)
+const botonCambiar = document.getElementById('btnEnviar')
+console.log(botonCambiar)
+const bienvenida = document.getElementById('titulo')
+console.log(bienvenida)
+
+botonCambiar.addEventListener('click', () => {
+    const nuevoNombre = tuNombre.value.trim()
+    console.log(nuevoNombre)
+    if (nuevoNombre) {
+        bienvenida.textContent = `¡Hola, ${nuevoNombre}!`
+        //tambien funciona con .innerText
+      } else {
+        bienvenida.textContent = 'Bienvenido'
+        alert('Por favor, ingresa tu nombre completo.')
+      }
+})
+
+
 // DESAPARECER Y APARECER ELEMENTOS
 /*
     1. capturamos el elemento en una variable
@@ -70,6 +95,29 @@ el evento .addEventListener se acciona al presionar el boton y cambia los datos
         fantasma.classList.add('desaparecer')    
     });
 */
+
+const fantasmita = document.getElementById('ghost')
+console.log(fantasmita)
+const desaparecerFantasma = document.getElementById('bye-ghost')
+console.log(desaparecerFantasma)
+
+desaparecerFantasma.addEventListener('click', () => {
+    fantasmita.classList.add('desaparecer')
+})
+
+const aparecerFantasma = document.getElementById('hello-ghost')
+console.log(aparecerFantasma)
+
+aparecerFantasma.addEventListener('click', () => {
+    fantasmita.classList.remove('desaparecer')
+})
+
+const mixFantasma = document.getElementById('here-ghost')
+console.log(mixFantasma)
+
+mixFantasma.addEventListener('click', () => {
+    fantasmita.classList.toggle('desaparecer')
+})
 
 // AGREGAR ELEMENTOS 
 /*
@@ -100,6 +148,37 @@ el evento .addEventListener se acciona al presionar el boton y cambia los datos
         listaMercado.insertAdjacentHTML("afterend", `<p class="animate__animated animate__fadeOut">Elemento agregado</p>`);
     6. Creamos otra funcion para remover el texto
 */
+
+const listaContenido = document.getElementById('lista')
+console.log(listaContenido)
+
+listaContenido.insertAdjacentHTML('beforebegin', `<h2>Lista Mercado</h2>`)
+
+const inputMercado = document.getElementById('input-item')
+console.log(inputMercado)
+const agregarMercado = document.getElementById('btn-agregar')
+console.log(agregarMercado)
+
+agregarMercado.addEventListener('click', () => { 
+    const objetoMercado = inputMercado.value
+    const itemMercado = document.createElement('li')
+    itemMercado.textContent = objetoMercado
+    listaContenido.append(itemMercado)
+    listaContenido.insertAdjacentHTML("afterend", `<p class="animate__animated animate__fadeOut">Elemento agregado</p>`);
+});
+
+const quitarMercado = document.getElementById('btn-quitar')
+console.log(quitarMercado)
+
+quitarMercado.addEventListener('click', () =>{
+    const itemQuitar = listaContenido.lastChild
+    console.log(itemQuitar)
+    const objetoMercado = inputMercado.value
+    const itemMercado = document.createElement('li')
+    itemMercado.textContent = objetoMercado
+    itemQuitar.remove(itemMercado)
+    
+});
 
 // CLONAR ELEMENTOS 
 /*
